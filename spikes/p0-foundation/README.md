@@ -24,11 +24,16 @@ pnpm install --frozen-lockfile
 pnpm run typecheck
 pnpm run package
 pnpm run smoke:package
+pnpm run smoke:provider-views
 ```
 
 For the initial lockfile only, use `pnpm install`, review the entire generated lockfile, and then use `--frozen-lockfile` thereafter.
 
 `pnpm run package` produces the ignored `out/InboxRail P0 Foundation Spike-win32-x64` directory. The smoke command launches that packaged executable with a task-scoped environment flag. The main process waits for its bundled renderer to finish loading, verifies `app.isPackaged`, exits with code zero, and never uses a Vite development server.
+
+The provider-view smoke launches the same package once for Gmail and once for Microsoft. Each run creates one ephemeral, Node-free `WebContentsView` below the 72-pixel mock tab strip, follows only HTTPS provider allowlist navigation, waits for a provider-owned sign-in origin, captures the rendered surface in memory, and exits without saving page contents. No provider identity or credentials are required or recorded.
+
+For an interactive development view, set `INBOXRAIL_P0_PROVIDER` to `gmail` or `microsoft` before `pnpm start`. The remote view has no preload or application bridge; the local shell remains visible only in the tab-strip region above it.
 
 ## P0-003 result
 
@@ -52,3 +57,19 @@ Forge's Vite plugin is viable for the P1 foundation at the exact `7.11.2` pin pr
 
 - pnpm 11.20.0 is not selected: its default exotic-subdependency policy rejects Forge 7.11's Git-based `@electron/node-gyp` transitive dependency. Pnpm 10.33.2 installs without disabling that pnpm 11 safeguard.
 - Forge 7.11's dependency declarations contain unresolved internal/optional types, so dependency declaration checking is skipped while strict checking remains enabled for spike source. The executable Vite compile and package steps pass.
+
+## P0-004 result
+
+**Result:** Passed on 2026-08-08 against the packaged Windows x64 spike.
+
+| Check | Evidence |
+|---|---|
+| Shell/view composition | One `BrowserWindow` local shell retains a 72-pixel mock tab strip; one child `WebContentsView` is bounded to the remaining content region and recomputes bounds on window resize |
+| Gmail sign-in | The packaged smoke followed the Gmail entry URL to `accounts.google.com`, completed loading, and produced a non-empty in-memory render capture |
+| Microsoft sign-in | The packaged smoke followed the Outlook entry URL to a Microsoft sign-in host, completed loading, and produced a non-empty in-memory render capture |
+| Remote Node/preload boundary | Remote preferences explicitly disable Node in frames/workers, omit preload, enable context isolation and sandboxing, and disable the webview tag |
+| Web security | HTTPS provider-host allowlists are enforced; web security remains enabled; insecure content and experimental features are disabled |
+| Native capabilities | Permission checks and requests deny by default; popup creation is denied |
+| Cleanup | Smoke shutdown detaches the child view, closes its `webContents`, destroys the shell window, and leaves no packaged spike process running |
+
+The smoke writes only phase names and the provider kind to a unique temporary diagnostic file, then removes it. It does not store URLs, query strings, screenshots, provider payloads, identities, cookies, or credentials.

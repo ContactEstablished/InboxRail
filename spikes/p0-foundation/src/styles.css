@@ -13,6 +13,37 @@ body {
   place-items: center;
 }
 
+.tab-strip {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 1;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  height: 72px;
+  padding: 0 18px;
+  border-bottom: 1px solid #374151;
+  background: #111827;
+  gap: 12px;
+}
+
+.rail-mark {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #2563eb;
+  color: #eff6ff;
+  font-weight: 800;
+  place-items: center;
+}
+
+.tab-placeholder {
+  color: #d1d5db;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
 main {
   width: min(36rem, calc(100vw - 4rem));
 }

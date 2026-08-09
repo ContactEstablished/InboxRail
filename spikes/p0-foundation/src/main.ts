@@ -1,9 +1,33 @@
 import { app, BrowserWindow } from 'electron';
+import { writeFileSync } from 'node:fs';
 import path from 'node:path';
+import { attachProviderView, parseProviderViewKind } from './provider-view';
 
 const isPackageSmoke = process.env.INBOXRAIL_PACKAGE_SMOKE === '1';
+const providerViewSmokeArgument = process.argv.find((argument) =>
+  argument.startsWith('--inboxrail-provider-view-smoke='),
+);
+const providerViewSmoke = parseProviderViewKind(
+  providerViewSmokeArgument?.slice('--inboxrail-provider-view-smoke='.length),
+);
+const interactiveProviderView = parseProviderViewKind(process.env.INBOXRAIL_P0_PROVIDER);
+const providerView = providerViewSmoke ?? interactiveProviderView;
+const providerSmokeDiagnosticPath = process.env.INBOXRAIL_PROVIDER_SMOKE_DIAGNOSTIC;
+
+function recordProviderSmokePhase(phase: string): void {
+  if (providerSmokeDiagnosticPath) {
+    writeFileSync(
+      providerSmokeDiagnosticPath,
+      `${JSON.stringify({ phase, providerViewSmoke: providerViewSmoke ?? null })}\n`,
+      { encoding: 'utf8', flag: 'a' },
+    );
+  }
+}
+
+recordProviderSmokePhase('module-loaded');
 
 function createWindow(): void {
+  recordProviderSmokePhase('create-window');
   const window = new BrowserWindow({
     width: 960,
     height: 640,
@@ -16,6 +40,7 @@ function createWindow(): void {
       sandbox: true,
     },
   });
+  recordProviderSmokePhase('window-created');
 
   window.webContents.once('did-fail-load', (_event, errorCode, errorDescription) => {
     if (isPackageSmoke) {
@@ -30,6 +55,65 @@ function createWindow(): void {
     }
   });
 
+  if (providerView) {
+    recordProviderSmokePhase('provider-branch');
+    let providerSignInLoaded = false;
+    let providerSmokeComplete = false;
+    let disposeProviderView: (() => void) | undefined;
+    const finishProviderSmoke = (exitCode: number): void => {
+      if (providerSmokeComplete) {
+        return;
+      }
+
+      providerSmokeComplete = true;
+      disposeProviderView?.();
+      window.destroy();
+      setImmediate(() => app.exit(exitCode));
+    };
+    const smokeTimeout = providerViewSmoke
+      ? setTimeout(() => {
+          if (!providerSmokeComplete) {
+            finishProviderSmoke(providerSignInLoaded ? 5 : 3);
+          }
+        }, 45_000)
+      : undefined;
+    recordProviderSmokePhase('provider-timeout-armed');
+
+    const attachedProviderView = attachProviderView(window, providerView, () => {
+      if (!providerViewSmoke || providerSignInLoaded) {
+        return;
+      }
+
+      providerSignInLoaded = true;
+      recordProviderSmokePhase('provider-sign-in-loaded');
+      const captureTimeout = new Promise<never>((_resolve, reject) => {
+        setTimeout(() => reject(new Error('Provider view capture timed out')), 5_000);
+      });
+
+      void Promise.race([attachedProviderView.view.webContents.capturePage(), captureTimeout])
+        .then((image) => {
+          if (smokeTimeout) {
+            clearTimeout(smokeTimeout);
+          }
+
+          const size = image.getSize();
+          recordProviderSmokePhase('provider-capture-complete');
+          finishProviderSmoke(
+            !image.isEmpty() && size.width > 0 && size.height > 0 && app.isPackaged ? 0 : 4,
+          );
+        })
+        .catch(() => {
+          if (smokeTimeout) {
+            clearTimeout(smokeTimeout);
+          }
+          recordProviderSmokePhase('provider-capture-failed');
+          finishProviderSmoke(5);
+        });
+    });
+    disposeProviderView = attachedProviderView.dispose;
+    recordProviderSmokePhase('provider-view-attached');
+  }
+
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
     void window.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
   } else {
@@ -39,16 +123,25 @@ function createWindow(): void {
   }
 }
 
-app.whenReady().then(() => {
-  createWindow();
+app
+  .whenReady()
+  .then(() => {
+    recordProviderSmokePhase('app-ready');
+    createWindow();
 
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0 && !isPackageSmoke) {
-      createWindow();
-    }
+    app.on('activate', () => {
+      if (BrowserWindow.getAllWindows().length === 0 && !isPackageSmoke && !providerViewSmoke) {
+        createWindow();
+      }
+    });
+  })
+  .catch(() => {
+    recordProviderSmokePhase('startup-failed');
+    app.exit(6);
   });
-});
 
 app.on('window-all-closed', () => {
-  app.quit();
+  if (!providerViewSmoke) {
+    app.quit();
+  }
 });

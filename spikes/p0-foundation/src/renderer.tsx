@@ -4,11 +4,17 @@ import './styles.css';
 
 function App() {
   return (
-    <main>
-      <p className="eyebrow">P0 feasibility spike</p>
-      <h1>InboxRail</h1>
-      <p>Packaged Electron Forge + Vite + TypeScript + React shell.</p>
-    </main>
+    <>
+      <header className="tab-strip">
+        <span className="rail-mark">IR</span>
+        <span className="tab-placeholder">Secure provider view</span>
+      </header>
+      <main>
+        <p className="eyebrow">P0 feasibility spike</p>
+        <h1>InboxRail</h1>
+        <p>Packaged Electron Forge + Vite + TypeScript + React shell.</p>
+      </main>
+    </>
   );
 }
 

@@ -54,7 +54,7 @@ Every task must preserve these invariants:
 
 ### P0-004 — Spike secure shell/view composition
 
-- [ ] **Depends:** P0-003. **Do:** compose a local shell with one `WebContentsView`, resize it below a mock tab strip, and load dedicated provider sign-in test pages using production-equivalent web preferences. **Accept:** Gmail and Microsoft sign-in render without enabling Node, preload, insecure content, experimental features, or disabled sandbox/web security.
+- [x] **Depends:** P0-003. **Do:** compose a local shell with one `WebContentsView`, resize it below a mock tab strip, and load dedicated provider sign-in test pages using production-equivalent web preferences. **Accept:** Gmail and Microsoft sign-in render without enabling Node, preload, insecure content, experimental features, or disabled sandbox/web security.
 
 ### P0-005 — Prove persistent partition isolation
 
