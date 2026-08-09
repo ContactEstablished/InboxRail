@@ -1,6 +1,10 @@
 import { app, BrowserWindow } from 'electron';
 import { writeFileSync } from 'node:fs';
 import path from 'node:path';
+import {
+  parsePartitionSmokeMode,
+  runPartitionIsolationSmoke,
+} from './partition-isolation';
 import { attachProviderView, parseProviderViewKind } from './provider-view';
 
 const isPackageSmoke = process.env.INBOXRAIL_PACKAGE_SMOKE === '1';
@@ -13,12 +17,35 @@ const providerViewSmoke = parseProviderViewKind(
 const interactiveProviderView = parseProviderViewKind(process.env.INBOXRAIL_P0_PROVIDER);
 const providerView = providerViewSmoke ?? interactiveProviderView;
 const providerSmokeDiagnosticPath = process.env.INBOXRAIL_PROVIDER_SMOKE_DIAGNOSTIC;
+const partitionSmokeArgument = process.argv.find((argument) =>
+  argument.startsWith('--inboxrail-partition-smoke='),
+);
+const partitionSmokeMode = parsePartitionSmokeMode(
+  partitionSmokeArgument?.slice('--inboxrail-partition-smoke='.length),
+);
+const partitionSmokeDiagnosticPath = process.env.INBOXRAIL_PARTITION_SMOKE_DIAGNOSTIC;
+const partitionSmokeUserDataPath = process.env.INBOXRAIL_PARTITION_SMOKE_USER_DATA;
+const partitionSmokePort = Number.parseInt(process.env.INBOXRAIL_PARTITION_SMOKE_PORT ?? '', 10);
+
+if (partitionSmokeMode && partitionSmokeUserDataPath) {
+  app.setPath('userData', partitionSmokeUserDataPath);
+}
 
 function recordProviderSmokePhase(phase: string): void {
   if (providerSmokeDiagnosticPath) {
     writeFileSync(
       providerSmokeDiagnosticPath,
       `${JSON.stringify({ phase, providerViewSmoke: providerViewSmoke ?? null })}\n`,
+      { encoding: 'utf8', flag: 'a' },
+    );
+  }
+}
+
+function recordPartitionSmokePhase(phase: string, detail?: string): void {
+  if (partitionSmokeDiagnosticPath) {
+    writeFileSync(
+      partitionSmokeDiagnosticPath,
+      `${JSON.stringify({ detail: detail ?? null, mode: partitionSmokeMode ?? null, phase })}\n`,
       { encoding: 'utf8', flag: 'a' },
     );
   }
@@ -127,6 +154,34 @@ app
   .whenReady()
   .then(() => {
     recordProviderSmokePhase('app-ready');
+    if (partitionSmokeMode) {
+      recordPartitionSmokePhase('app-ready');
+      if (
+        !partitionSmokeUserDataPath ||
+        !Number.isInteger(partitionSmokePort) ||
+        partitionSmokePort < 1024 ||
+        partitionSmokePort > 65535
+      ) {
+        recordPartitionSmokePhase('configuration-invalid');
+        app.exit(7);
+        return;
+      }
+
+      void runPartitionIsolationSmoke(partitionSmokeMode, partitionSmokePort)
+        .then(() => {
+          recordPartitionSmokePhase('partition-isolation-passed');
+          app.exit(app.isPackaged ? 0 : 2);
+        })
+        .catch((error: unknown) => {
+          recordPartitionSmokePhase(
+            'partition-isolation-failed',
+            error instanceof Error ? error.message : 'Unknown failure',
+          );
+          app.exit(7);
+        });
+      return;
+    }
+
     createWindow();
 
     app.on('activate', () => {
@@ -141,7 +196,7 @@ app
   });
 
 app.on('window-all-closed', () => {
-  if (!providerViewSmoke) {
+  if (!providerViewSmoke && !partitionSmokeMode) {
     app.quit();
   }
 });

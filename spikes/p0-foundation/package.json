@@ -16,7 +16,8 @@
     "typecheck": "tsc --noEmit",
     "package": "electron-forge package --platform=win32 --arch=x64",
     "smoke:package": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package-smoke.ps1",
-    "smoke:provider-views": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/provider-view-smoke.ps1"
+    "smoke:provider-views": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/provider-view-smoke.ps1",
+    "smoke:partitions": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/partition-isolation-smoke.ps1"
   },
   "dependencies": {
     "react": "19.2.8",

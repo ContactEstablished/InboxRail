@@ -58,7 +58,7 @@ Every task must preserve these invariants:
 
 ### P0-005 — Prove persistent partition isolation
 
-- [ ] **Depends:** P0-004. **Do:** create two UUID-backed `persist:` partitions and sign into two dedicated test identities or use a deterministic cookie fixture. **Accept:** identity/cookie/local-storage state does not cross partitions and both partitions retain their own state after full application restart.
+- [x] **Depends:** P0-004. **Do:** create two UUID-backed `persist:` partitions and sign into two dedicated test identities or use a deterministic cookie fixture. **Accept:** identity/cookie/local-storage state does not cross partitions and both partitions retain their own state after full application restart.
 
 ### P0-006 — Prove explicit renderer cleanup
 
