@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Sans:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg-window:#15171C;--bg-surface:#1B1E24;--bg-raised:#232730;--bg-hover:#2B303A;--border:#303642;--border-strong:#3D4550;--text:#E2E6EC;--text-dim:#9AA3B0;--text-faint:#666E7C;--ok:#7FA98C;--caution:#BFA36B;--error:#C07E7E;--ember:#C0866B;--amber:#BFA36B;--sage:#94AE7C;--teal:#6DAAA0;--azure:#7B9CC6;--iris:#9B90CB;--rose:#C2879B;--stone:#8D97A6}
+body{margin:0;background:#101216;color:var(--text);font:13px/1.45 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#9AA3B0;text-decoration:none}a:hover{color:#E2E6EC}
+@keyframes railfill{0%{transform:scaleY(0)}16%{transform:scaleY(1)}88%{transform:scaleY(1)}100%{transform:scaleY(1)}}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+<section id="1a" style="display:flex;flex-direction:column;gap:56px;padding:48px;align-items:flex-start">
+
+  <div style="display:flex;flex-direction:column;gap:4px">
+    <div style="font:600 18px 'Instrument Sans',sans-serif;color:var(--text)">Aviary</div>
+    <div style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">screens 01–07 · one dark theme · accent always borrows the active Perch color · neutral #8D97A6 when no Perch is active</div>
+  </div>
+
+  <!-- 01 MAIN WINDOW -->
+  <div data-screen-label="01 Main window" style="display:flex;flex-direction:column;gap:10px">
+    <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--text-faint);letter-spacing:.04em">01 · MAIN WINDOW — THE ROOST · 1440×900</div>
+    <div style="width:1440px;height:900px;background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;flex:none">
+      <div style="height:36px;background:var(--bg-window);display:flex;align-items:center;flex:none;position:relative">
+        <div style="display:flex;align-items:center;gap:8px;padding:0 14px">
+          <span style="width:8px;height:8px;border-radius:50%;border:1.5px solid var(--text-faint)"></span>
+          <span style="font:600 12.5px 'Instrument Sans',sans-serif;color:var(--text-dim)">Aviary</span>
+        </div>
+        <sc-if value="{{ showFocus }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:7px;height:22px;padding:0 10px;border:1px solid var(--border-strong);border-radius:11px;color:var(--text-dim);font-size:11px">
+            <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3 5.5 5.5 0 1 0 13 9.5z"></path></svg>
+            <span>Focus</span><span style="font:500 11px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text)">14 held</span>
+          </div>
+        </sc-if>
+        <div style="flex:1"></div>
+        <div style="display:flex;align-self:stretch">
+          <div style="width:46px;display:flex;align-items:center;justify-content:center;color:var(--text-dim)" style-hover="background:var(--bg-hover)"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M0 5h10" stroke="currentColor" stroke-width="1"></path></svg></div>
+          <div style="width:46px;display:flex;align-items:center;justify-content:center;color:var(--text-dim)" style-hover="background:var(--bg-hover)"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="0.5" y="0.5" width="9" height="9" stroke="currentColor" stroke-width="1"></rect></svg></div>
+          <div style="width:46px;display:flex;align-items:center;justify-content:center;color:var(--text-dim)" style-hover="background:#8a3d3d;color:var(--text)"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor" stroke-width="1"></path></svg></div>
+        </div>
+      </div>
+      <div style="height:40px;background:var(--bg-window);border-bottom:1px solid var(--border);display:flex;align-items:flex-end;padding:0 10px;gap:2px;flex:none">
+        <div style="position:relative;height:34px;width:176px;display:flex;align-items:center;gap:8px;padding:0 12px 0 16px;border-radius:6px 6px 0 0;background:var(--bg-raised);color:var(--text);font-size:13px">
+          <span style="position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:2px 0 0 0;background:var(--ember)"></span>
+          <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500">Work</span>
+          <span style="margin-left:auto;font:500 11px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--ember)">3</span>
+        </div>
+        <div style="position:relative;height:34px;width:168px;display:flex;align-items:center;gap:8px;padding:0 12px 0 16px;border-radius:6px 6px 0 0;color:var(--text-dim);font-size:13px" style-hover="background:var(--bg-hover)">
+          <span style="position:absolute;left:0;top:7px;bottom:7px;width:3px;border-radius:2px;background:var(--azure)"></span>
+          <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Personal</span>
+          <span style="margin-left:auto;font:500 11px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--azure)">12</span>
+        </div>
+        <div style="position:relative;height:34px;width:168px;display:flex;align-items:center;gap:8px;padding:0 12px 0 16px;border-radius:6px 6px 0 0;color:var(--text-dim);font-size:13px" style-hover="background:var(--bg-hover)">
+          <span style="position:absolute;left:0;top:7px;bottom:7px;width:3px;border-radius:2px;background:var(--sage)"></span>
+          <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Freelance</span>
+        </div>
+        <sc-if value="{{ drag }}" hint-placeholder-val="{{ true }}"><span style="width:2px;height:28px;background:var(--rose);border-radius:1px;margin:0 2px 3px;flex:none"></span></sc-if>
+        <div style="position:relative;height:34px;width:168px;display:flex;align-items:center;gap:8px;padding:0 12px 0 16px;border-radius:6px 6px 0 0;color:var(--text-faint);font-size:13px;opacity:.6" style-hover="background:var(--bg-hover)">
+          <span style="position:absolute;left:0;top:50%;margin-top:-4px;width:3px;height:8px;border-radius:2px;background:var(--teal);opacity:.55"></span>
+          <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Ops</span>
+        </div>
+        <div style="position:relative;height:34px;width:168px;display:flex;align-items:center;gap:8px;padding:0 12px 0 16px;border-radius:6px 6px 0 0;color:var(--text-dim);font-size:13px" style-hover="background:var(--bg-hover)">
+          <span style="position:absolute;left:0;top:7px;bottom:7px;width:3px;border-radius:2px;background:var(--iris)"></span>
+          <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">School</span>
+          <span style="margin-left:auto;width:6px;height:6px;border-radius:50%;background:var(--error);flex:none" title="Sign-in expired"></span>
+        </div>
+        <sc-if value="{{ drag }}" hint-placeholder-val="{{ true }}">
+          <div style="position:relative;height:34px;width:168px;display:flex;align-items:center;gap:8px;padding:0 12px 0 16px;border-radius:6px;background:var(--bg-raised);border:1px solid var(--border-strong);color:var(--text);font-size:13px;transform:translateY(-4px) rotate(-.5deg);box-shadow:0 10px 28px rgba(8,9,12,.55);cursor:grabbing">
+            <span style="position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:2px 0 0 2px;background:var(--rose)"></span>
+            <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500">Family</span>
+            <span style="margin-left:auto;font:500 11px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--rose)">2</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{ noDrag }}" hint-placeholder-val="{{ false }}">
+          <div style="position:relative;height:34px;width:168px;display:flex;align-items:center;gap:8px;padding:0 12px 0 16px;border-radius:6px 6px 0 0;color:var(--text-dim);font-size:13px" style-hover="background:var(--bg-hover)">
+            <span style="position:absolute;left:0;top:7px;bottom:7px;width:3px;border-radius:2px;background:var(--rose)"></span>
+            <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Family</span>
+            <span style="margin-left:auto;font:500 11px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--rose)">2</span>
+          </div>
+        </sc-if>
+        <div style="height:28px;width:28px;margin-bottom:3px;display:flex;align-items:center;justify-content:center;border-radius:6px;color:var(--text-faint)" style-hover="background:var(--bg-hover);color:var(--text-dim)"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></div>
+      </div>
+      <sc-if value="{{ showFocus }}" hint-placeholder-val="{{ false }}">
+        <div style="height:30px;background:var(--bg-raised);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;padding:0 14px;font-size:12px;color:var(--text-dim);flex:none">
+          <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3 5.5 5.5 0 1 0 13 9.5z"></path></svg>
+          <span>Focus — notifications held until 3:00 PM</span>
+          <span style="font:500 11px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text)">14 waiting</span>
+          <div style="flex:1"></div>
+          <button style="height:20px;padding:0 10px;border-radius:4px;border:1px solid var(--border-strong);background:transparent;color:var(--text-dim);font:500 11px Inter,sans-serif;cursor:pointer" style-hover="background:var(--bg-hover);color:var(--text)">End Focus</button>
+        </div>
+      </sc-if>
+      <div style="flex:1;position:relative;background:var(--bg-surface);background-image:repeating-linear-gradient(-45deg,transparent 0 14px,rgba(255,255,255,.012) 14px 28px);display:flex;align-items:center;justify-content:center">
+        <div style="text-align:center;display:flex;flex-direction:column;gap:6px">
+          <div style="font:400 12px 'JetBrains Mono',monospace;color:var(--text-faint)">[ gmail webview — work@getledger.com ]</div>
+          <div style="font:400 11px 'JetBrains Mono',monospace;color:#4A5160">the provider's UI renders here · not Aviary's to design</div>
+        </div>
+      </div>
+      <div style="height:24px;background:var(--bg-window);border-top:1px solid var(--border);display:flex;align-items:center;gap:16px;padding:0 14px;flex:none;font:400 11px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text-faint)">
+        <span>6 perches</span><span>2 suspended</span><span>polling 60s</span><span>last event 12s ago</span>
+        <div style="flex:1"></div>
+        <span>focus off · quiet hours 22:00–07:00</span>
+      </div>
+    </div>
+    <div style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint);max-width:1440px">tab states, left to right: active (full rail, raised) · unread 12 · zero unread · suspended (60%, ember) · auth-error dot · mid-drag (lifted, drop caret after Freelance)</div>
+  </div>
+
+  <!-- 02 SUSPENDED PERCH OVERLAY -->
+  <div data-screen-label="02 Suspended Perch overlay" style="display:flex;flex-direction:column;gap:10px">
+    <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--text-faint);letter-spacing:.04em">02 · SUSPENDED PERCH REHEAT — SHOWN ~2S IN THE MAIL AREA</div>
+    <div style="width:900px;height:520px;position:relative;background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex:none">
+      <span style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--teal);transform-origin:bottom;animation:railfill 2.6s ease-out infinite"></span>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+        <div style="width:44px;height:44px;border-radius:50%;border:2px solid var(--teal);background:var(--bg-raised);display:flex;align-items:center;justify-content:center;font:600 17px 'Instrument Sans',sans-serif;color:var(--teal)">O</div>
+        <div style="font:600 16px 'Instrument Sans',sans-serif;color:var(--text)">Ops</div>
+        <div style="font-size:12px;color:var(--text-dim);margin-top:-6px">ops@getledger.com · Outlook 365</div>
+        <div style="font:400 12px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text-faint)">3 unread · last synced 4 min ago</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:18px;align-items:center">
+          <span style="width:340px;height:10px;border-radius:4px;background:rgba(109,170,160,.09)"></span>
+          <span style="width:280px;height:10px;border-radius:4px;background:rgba(109,170,160,.07)"></span>
+          <span style="width:310px;height:10px;border-radius:4px;background:rgba(109,170,160,.05)"></span>
+        </div>
+      </div>
+    </div>
+    <div style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">left rail fills bottom-to-top in ~400ms ease-out (loops here for demo) · skeleton tinted with the Perch color at &lt;10% alpha · none with prefers-reduced-motion</div>
+  </div>
+
+  <!-- 03 SETTINGS PERCHES -->
+  <div data-screen-label="03 Settings — Perches" style="display:flex;flex-direction:column;gap:10px">
+    <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--text-faint);letter-spacing:.04em">03 · SETTINGS → PERCHES · NEUTRAL ACCENT #8D97A6 (NO ACTIVE PERCH)</div>
+    <div style="width:1440px;height:900px;background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;flex:none">
+      <div style="height:36px;background:var(--bg-window);display:flex;align-items:center;flex:none">
+        <div style="display:flex;align-items:center;gap:8px;padding:0 14px"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid var(--text-faint)"></span><span style="font:600 12.5px 'Instrument Sans',sans-serif;color:var(--text-dim)">Aviary — Settings</span></div>
+        <div style="flex:1"></div>
+        <div style="display:flex;align-self:stretch">
+          <div style="width:46px;display:flex;align-items:center;justify-content:center;color:var(--text-dim)"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M0 5h10" stroke="currentColor" stroke-width="1"></path></svg></div>
+          <div style="width:46px;display:flex;align-items:center;justify-content:center;color:var(--text-dim)"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="0.5" y="0.5" width="9" height="9" stroke="currentColor" stroke-width="1"></rect></svg></div>
+          <div style="width:46px;display:flex;align-items:center;justify-content:center;color:var(--text-dim)"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor" stroke-width="1"></path></svg></div>
+        </div>
+      </div>
+      <div style="flex:1;display:flex;min-height:0">
+        <div style="width:216px;background:var(--bg-window);border-right:1px solid var(--border);padding:20px 10px;display:flex;flex-direction:column;gap:2px;flex:none">
+          <div style="font:600 11px Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);padding:0 10px 10px">Settings</div>
+          <div style="position:relative;height:32px;display:flex;align-items:center;padding:0 10px 0 14px;border-radius:6px;background:var(--bg-raised);color:var(--text);font-weight:500"><span style="position:absolute;left:0;top:7px;bottom:7px;width:3px;border-radius:2px;background:var(--stone)"></span>Perches</div>
+          <div style="height:32px;display:flex;align-items:center;padding:0 10px 0 14px;border-radius:6px;color:var(--text-dim)" style-hover="background:var(--bg-hover)">Rules</div>
+          <div style="height:32px;display:flex;align-items:center;padding:0 10px 0 14px;border-radius:6px;color:var(--text-dim)" style-hover="background:var(--bg-hover)">Quiet Hours</div>
+          <div style="height:32px;display:flex;align-items:center;padding:0 10px 0 14px;border-radius:6px;color:var(--text-dim)" style-hover="background:var(--bg-hover)">General</div>
+        </div>
+        <div style="flex:1;overflow:auto;padding:32px 40px">
+          <div style="max-width:880px;display:flex;flex-direction:column;gap:20px">
+            <div>
+              <div style="font:600 18px 'Instrument Sans',sans-serif;color:var(--text)">Perches</div>
+              <div style="font-size:12px;color:var(--text-dim);margin-top:3px">Six connected · room for two more</div>
+            </div>
+            <div style="border:1px solid var(--border);border-radius:6px;overflow:hidden">
+              <div style="display:grid;grid-template-columns:8px 1fr 74px 52px 56px 170px 20px;gap:14px;align-items:center;padding:13px 16px">
+                <span style="width:8px;height:8px;border-radius:50%;background:var(--ember)"></span>
+                <div><div style="font-weight:500">Work</div><div style="font-size:12px;color:var(--text-faint)">work@getledger.com</div></div>
+                <span style="font-size:11px;color:var(--text-faint)">Gmail</span>
+                <span style="font:400 12px 'JetBrains Mono',monospace;color:var(--text-dim)">30s</span>
+                <span style="display:flex;gap:10px;color:var(--text-dim)"><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="6" r="3"></circle><path d="M8 9v5"></path></svg><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h8l-1-1.5V7a3 3 0 0 0-6 0v2.5L4 11z"></path><path d="M6.8 13a1.3 1.3 0 0 0 2.4 0"></path></svg></span>
+                <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-dim)"><span style="width:6px;height:6px;border-radius:50%;background:var(--ok)"></span>Connected · pinned</span>
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#666E7C" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"></path></svg>
+              </div>
+              <div style="border-top:1px solid var(--border)">
+                <div style="display:grid;grid-template-columns:8px 1fr 74px 52px 56px 170px 20px;gap:14px;align-items:center;padding:13px 16px;background:var(--bg-raised)">
+                  <span style="width:8px;height:8px;border-radius:50%;background:var(--azure)"></span>
+                  <div><div style="font-weight:500">Personal</div><div style="font-size:12px;color:var(--text-faint)">mert.k@gmail.com</div></div>
+                  <span style="font-size:11px;color:var(--text-faint)">Gmail</span>
+                  <span style="font:400 12px 'JetBrains Mono',monospace;color:var(--text-dim)">60s</span>
+                  <span style="display:flex;gap:10px;color:var(--text-faint)"><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="6" r="3"></circle><path d="M8 9v5"></path></svg><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h8l-1-1.5V7a3 3 0 0 0-6 0v2.5L4 11z"></path><path d="M6.8 13a1.3 1.3 0 0 0 2.4 0"></path></svg></span>
+                  <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-dim)"><span style="width:6px;height:6px;border-radius:50%;background:var(--ok)"></span>Connected</span>
+                  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#9AA3B0" stroke-width="1.5" stroke-linecap="round"><path d="M4 10l4-4 4 4"></path></svg>
+                </div>
+                <div style="background:var(--bg-raised);border-top:1px solid var(--border);padding:20px 16px 22px 38px;display:flex;flex-direction:column;gap:18px">
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <div style="font:600 11px Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint)">Identity color</div>
+                    <div style="display:flex;align-items:center;gap:12px">
+                      <span title="Ember — in use by Work" style="width:18px;height:18px;border-radius:50%;background:var(--ember);opacity:.3"></span>
+                      <span title="Amber — available" style="width:18px;height:18px;border-radius:50%;background:var(--amber)"></span>
+                      <span title="Sage — in use by Freelance" style="width:18px;height:18px;border-radius:50%;background:var(--sage);opacity:.3"></span>
+                      <span title="Teal — in use by Ops" style="width:18px;height:18px;border-radius:50%;background:var(--teal);opacity:.3"></span>
+                      <span title="Azure — current" style="width:18px;height:18px;border-radius:50%;background:var(--azure);box-shadow:0 0 0 2px var(--bg-raised),0 0 0 3.5px var(--azure)"></span>
+                      <span title="Iris — in use by School" style="width:18px;height:18px;border-radius:50%;background:var(--iris);opacity:.3"></span>
+                      <span title="Rose — in use by Family" style="width:18px;height:18px;border-radius:50%;background:var(--rose);opacity:.3"></span>
+                      <span title="Stone — available" style="width:18px;height:18px;border-radius:50%;background:var(--stone)"></span>
+                      <span style="font-size:11px;color:var(--text-faint);margin-left:6px">Dimmed colors are in use by other Perches</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:36px">
+                    <div style="display:flex;align-items:center;gap:10px"><span style="width:32px;height:18px;border-radius:9px;background:var(--bg-hover);border:1px solid var(--border-strong);position:relative;flex:none"><span style="position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:var(--text-faint)"></span></span><span style="font-size:12px;color:var(--text-dim)">Pin — never suspend</span></div>
+                    <div style="display:flex;align-items:center;gap:10px"><span style="width:32px;height:18px;border-radius:9px;background:var(--bg-hover);border:1px solid var(--border-strong);position:relative;flex:none"><span style="position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:var(--text-faint)"></span></span><span style="font-size:12px;color:var(--text-dim)">Mute all notifications</span></div>
+                    <div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;color:var(--text-dim)">Poll every</span><span style="display:flex;align-items:center;gap:8px;height:26px;padding:0 10px;border:1px solid var(--border-strong);border-radius:6px;background:var(--bg-hover);font:400 12px 'JetBrains Mono',monospace;color:var(--text)">60s<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#666E7C" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"></path></svg></span></div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:12px;font-size:12px;color:var(--text-faint)">Signed in with Google as mert.k@gmail.com<button style="height:24px;padding:0 10px;border-radius:6px;border:1px solid var(--border-strong);background:transparent;color:var(--text-dim);font:500 12px Inter,sans-serif;cursor:pointer" style-hover="background:var(--bg-hover);color:var(--text)">Sign out</button></div>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:8px 1fr 74px 52px 56px 170px 20px;gap:14px;align-items:center;padding:13px 16px;border-top:1px solid var(--border)">
+                <span style="width:8px;height:8px;border-radius:50%;background:var(--sage)"></span>
+                <div><div style="font-weight:500">Freelance</div><div style="font-size:12px;color:var(--text-faint)">hello@mertkaya.studio</div></div>
+                <span style="font-size:11px;color:var(--text-faint)">Gmail</span>
+                <span style="font:400 12px 'JetBrains Mono',monospace;color:var(--text-dim)">2m</span>
+                <span style="display:flex;gap:10px;color:var(--text-faint)"><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="6" r="3"></circle><path d="M8 9v5"></path></svg><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h8l-1-1.5V7a3 3 0 0 0-6 0v2.5L4 11z"></path><path d="M6.8 13a1.3 1.3 0 0 0 2.4 0"></path></svg></span>
+                <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-dim)"><span style="width:6px;height:6px;border-radius:50%;background:var(--ok)"></span>Connected</span>
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#666E7C" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"></path></svg>
+              </div>
+              <div style="display:grid;grid-template-columns:8px 1fr 74px 52px 56px 170px 20px;gap:14px;align-items:center;padding:13px 16px;border-top:1px solid var(--border)">
+                <span style="width:8px;height:8px;border-radius:50%;background:var(--teal);opacity:.55"></span>
+                <div style="opacity:.7"><div style="font-weight:500">Ops</div><div style="font-size:12px;color:var(--text-faint)">ops@getledger.com</div></div>
+                <span style="font-size:11px;color:var(--text-faint)">Outlook</span>
+                <span style="font:400 12px 'JetBrains Mono',monospace;color:var(--text-dim)">5m</span>
+                <span style="display:flex;gap:10px;color:var(--text-faint)"><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="6" r="3"></circle><path d="M8 9v5"></path></svg><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h8l-1-1.5V7a3 3 0 0 0-6 0v2.5L4 11z"></path><path d="M6.8 13a1.3 1.3 0 0 0 2.4 0"></path></svg></span>
+                <span style="font-size:12px;color:var(--text-faint)">Suspended · wakes on open</span>
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#666E7C" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"></path></svg>
+              </div>
+              <div style="border-top:1px solid var(--border)">
+                <div style="display:grid;grid-template-columns:8px 1fr 74px 52px 56px 170px 20px;gap:14px;align-items:center;padding:13px 16px">
+                  <span style="width:8px;height:8px;border-radius:50%;background:var(--iris)"></span>
+                  <div><div style="font-weight:500">School</div><div style="font-size:12px;color:var(--text-faint)">mkaya4@uw.edu</div></div>
+                  <span style="font-size:11px;color:var(--text-faint)">Outlook</span>
+                  <span style="font:400 12px 'JetBrains Mono',monospace;color:var(--text-dim)">60s</span>
+                  <span style="display:flex;gap:10px;color:var(--text-faint)"><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="6" r="3"></circle><path d="M8 9v5"></path></svg><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h8l-1-1.5V7a3 3 0 0 0-6 0v2.5L4 11z"></path><path d="M6.8 13a1.3 1.3 0 0 0 2.4 0"></path></svg></span>
+                  <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--error)"><span style="width:6px;height:6px;border-radius:50%;background:var(--error)"></span>Sign-in expired</span>
+                  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#666E7C" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"></path></svg>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;padding:0 16px 13px 38px">
+                  <span style="font-size:12px;color:var(--text-dim)">Microsoft sign-in expired. Reauthorize to resume notifications.</span>
+                  <button style="height:24px;padding:0 12px;border-radius:6px;border:none;background:var(--stone);color:#15171C;font:500 12px Inter,sans-serif;cursor:pointer" style-hover="background:#9AA3B0">Reauthorize</button>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:8px 1fr 74px 52px 56px 170px 20px;gap:14px;align-items:center;padding:13px 16px;border-top:1px solid var(--border)">
+                <span style="width:8px;height:8px;border-radius:50%;background:var(--rose)"></span>
+                <div><div style="font-weight:500">Family</div><div style="font-size:12px;color:var(--text-faint)">kayafamily@outlook.com</div></div>
+                <span style="font-size:11px;color:var(--text-faint)">Outlook</span>
+                <span style="font:400 12px 'JetBrains Mono',monospace;color:var(--text-dim)">60s</span>
+                <span style="display:flex;gap:10px;color:var(--text-faint)"><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="6" r="3"></circle><path d="M8 9v5"></path></svg><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="#9AA3B0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h8l-1-1.5V7a3 3 0 0 0-6 0v2.5L4 11z"></path><path d="M2.5 2.5l11 11"></path></svg></span>
+                <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-dim)"><span style="width:6px;height:6px;border-radius:50%;background:var(--ok)"></span>Connected · muted</span>
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#666E7C" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"></path></svg>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <button style="height:28px;padding:0 14px;border-radius:6px;border:1px solid var(--border-strong);background:transparent;color:var(--text);font:500 12px Inter,sans-serif;cursor:pointer" style-hover="background:var(--bg-hover)">Add account</button>
+              <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-faint)">2 identity colors remain <span style="width:8px;height:8px;border-radius:50%;background:var(--amber)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--stone)"></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 SETTINGS RULES -->
+  <div data-screen-label="04 Settings — Rules" style="display:flex;flex-direction:column;gap:10px">
+    <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--text-faint);letter-spacing:.04em">04 · SETTINGS → RULES · CONDITION BUILDER + LIVE TEST</div>
+    <div style="width:1440px;height:900px;background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;flex:none">
+      <div style="height:36px;background:var(--bg-window);display:flex;align-items:center;flex:none">
+        <div style="display:flex;align-items:center;gap:8px;padding:0 14px"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid var(--text-faint)"></span><span style="font:600 12.5px 'Instrument Sans',sans-serif;color:var(--text-dim)">Aviary — Settings</span></div>
+        <div style="flex:1"></div>
+        <div style="display:flex;align-self:stretch">
+          <div style="width:46px;display:flex;align-items:center;justify-content:center;color:var(--text-dim)"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M0 5h10" stroke="currentColor" stroke-width="1"></path></svg></div>
+          <div style="width:46px;display:flex;align-items:center;justify-content:center;color:var(--text-dim)"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="0.5" y="0.5" width="9" height="9" stroke="currentColor" stroke-width="1"></rect></svg></div>
+          <div style="width:46px;display:flex;align-items:center;justify-content:center;color:var(--text-dim)"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor" stroke-width="1"></path></svg></div>
+        </div>
+      </div>
+      <div style="flex:1;display:flex;min-height:0">
+        <div style="width:216px;background:var(--bg-window);border-right:1px solid var(--border);padding:20px 10px;display:flex;flex-direction:column;gap:2px;flex:none">
+          <div style="font:600 11px Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);padding:0 10px 10px">Settings</div>
+          <div style="height:32px;display:flex;align-items:center;padding:0 10px 0 14px;border-radius:6px;color:var(--text-dim)" style-hover="background:var(--bg-hover)">Perches</div>
+          <div style="position:relative;height:32px;display:flex;align-items:center;padding:0 10px 0 14px;border-radius:6px;background:var(--bg-raised);color:var(--text);font-weight:500"><span style="position:absolute;left:0;top:7px;bottom:7px;width:3px;border-radius:2px;background:var(--stone)"></span>Rules</div>
+          <div style="height:32px;display:flex;align-items:center;padding:0 10px 0 14px;border-radius:6px;color:var(--text-dim)" style-hover="background:var(--bg-hover)">Quiet Hours</div>
+          <div style="height:32px;display:flex;align-items:center;padding:0 10px 0 14px;border-radius:6px;color:var(--text-dim)" style-hover="background:var(--bg-hover)">General</div>
+        </div>
+        <div style="flex:1;overflow:auto;padding:32px 40px">
+          <div style="max-width:920px;display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;align-items:flex-end;gap:16px">
+              <div style="flex:1">
+                <div style="font:600 18px 'Instrument Sans',sans-serif;color:var(--text)">Rules</div>
+                <div style="font-size:12px;color:var(--text-dim);margin-top:3px">Evaluated top to bottom. First match decides the notification.</div>
+              </div>
+              <button style="height:28px;padding:0 14px;border-radius:6px;border:none;background:var(--stone);color:#15171C;font:500 12px Inter,sans-serif;cursor:pointer" style-hover="background:#9AA3B0">New rule</button>
+            </div>
+            <div style="border:1px solid var(--border);border-radius:6px;overflow:hidden">
+              <div style="display:flex;align-items:center;gap:12px;padding:11px 14px">
+                <svg width="10" height="14" viewBox="0 0 10 14" fill="#666E7C"><circle cx="3" cy="2.5" r="1.2"></circle><circle cx="7" cy="2.5" r="1.2"></circle><circle cx="3" cy="7" r="1.2"></circle><circle cx="7" cy="7" r="1.2"></circle><circle cx="3" cy="11.5" r="1.2"></circle><circle cx="7" cy="11.5" r="1.2"></circle></svg>
+                <span style="font-weight:500;width:170px">VIP humans</span>
+                <span style="font-size:12px;color:var(--text-faint);flex:1">from is any of 6 addresses</span>
+                <span style="display:flex;gap:4px"><span style="width:6px;height:6px;border-radius:50%;background:var(--ember)"></span><span style="width:6px;height:6px;border-radius:50%;background:var(--azure)"></span><span style="width:6px;height:6px;border-radius:50%;background:var(--sage)"></span><span style="width:6px;height:6px;border-radius:50%;background:var(--teal)"></span><span style="width:6px;height:6px;border-radius:50%;background:var(--iris)"></span><span style="width:6px;height:6px;border-radius:50%;background:var(--rose)"></span></span>
+                <span style="font:600 10px Inter,sans-serif;letter-spacing:.06em;padding:3px 7px;border:1px solid var(--caution);border-radius:4px;color:var(--caution)">ALARM</span>
+                <span style="width:32px;height:18px;border-radius:9px;background:var(--stone);position:relative;flex:none"><span style="position:absolute;top:2px;right:2px;width:14px;height:14px;border-radius:50%;background:#15171C"></span></span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-top:1px solid var(--border)">
+                <svg width="10" height="14" viewBox="0 0 10 14" fill="#666E7C"><circle cx="3" cy="2.5" r="1.2"></circle><circle cx="7" cy="2.5" r="1.2"></circle><circle cx="3" cy="7" r="1.2"></circle><circle cx="7" cy="7" r="1.2"></circle><circle cx="3" cy="11.5" r="1.2"></circle><circle cx="7" cy="11.5" r="1.2"></circle></svg>
+                <span style="font-weight:500;width:170px">Invoices &amp; payments</span>
+                <span style="font-size:12px;color:var(--text-faint);flex:1">subject contains invoice · 2 conditions</span>
+                <span style="display:flex;gap:4px"><span style="width:6px;height:6px;border-radius:50%;background:var(--ember)"></span><span style="width:6px;height:6px;border-radius:50%;background:var(--sage)"></span></span>
+                <span style="font:600 10px Inter,sans-serif;letter-spacing:.06em;padding:3px 7px;border:1px solid var(--border-strong);border-radius:4px;color:var(--text-dim)">NORMAL</span>
+                <span style="width:32px;height:18px;border-radius:9px;background:var(--stone);position:relative;flex:none"><span style="position:absolute;top:2px;right:2px;width:14px;height:14px;border-radius:50%;background:#15171C"></span></span>
+              </div>
+              <div style="border-top:1px solid var(--border);background:var(--bg-raised)">
+                <div style="display:flex;align-items:center;gap:12px;padding:11px 14px">
+                  <svg width="10" height="14" viewBox="0 0 10 14" fill="#9AA3B0"><circle cx="3" cy="2.5" r="1.2"></circle><circle cx="7" cy="2.5" r="1.2"></circle><circle cx="3" cy="7" r="1.2"></circle><circle cx="7" cy="7" r="1.2"></circle><circle cx="3" cy="11.5" r="1.2"></circle><circle cx="7" cy="11.5" r="1.2"></circle></svg>
+                  <span style="font-weight:500;width:170px">CI failures</span>
+                  <span style="font-size:12px;color:var(--text-faint);flex:1">editing</span>
+                  <span style="display:flex;gap:4px"><span style="width:6px;height:6px;border-radius:50%;background:var(--ember)"></span><span style="width:6px;height:6px;border-radius:50%;background:var(--teal)"></span></span>
+                  <span style="font:600 10px Inter,sans-serif;letter-spacing:.06em;padding:3px 7px;border:1px solid var(--border-strong);border-radius:4px;color:var(--text-dim)">NORMAL</span>
+                  <span style="width:32px;height:18px;border-radius:9px;background:var(--stone);position:relative;flex:none"><span style="position:absolute;top:2px;right:2px;width:14px;height:14px;border-radius:50%;background:#15171C"></span></span>
+                </div>
+                <div style="border-top:1px solid var(--border);padding:20px 16px 20px 36px;display:flex;flex-direction:column;gap:16px">
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <span style="font-size:12px;color:var(--text-dim)">Match</span>
+                    <span style="display:inline-flex;border:1px solid var(--border-strong);border-radius:6px;overflow:hidden">
+                      <span style="padding:4px 12px;font:500 12px Inter,sans-serif;background:var(--bg-hover);color:var(--text)">all</span>
+                      <span style="padding:4px 12px;font:500 12px Inter,sans-serif;color:var(--text-faint);border-left:1px solid var(--border-strong)">any</span>
+                    </span>
+                    <span style="font-size:12px;color:var(--text-dim)">of the following</span>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <div style="display:grid;grid-template-columns:140px 150px 1fr 24px;gap:8px;align-items:center">
+                      <span style="display:flex;align-items:center;justify-content:space-between;height:28px;padding:0 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg-hover);font-size:12px">From<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#666E7C" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"></path></svg></span>
+                      <span style="display:flex;align-items:center;justify-content:space-between;height:28px;padding:0 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg-hover);font-size:12px">contains<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#666E7C" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"></path></svg></span>
+                      <span style="display:flex;align-items:center;height:28px;padding:0 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg-hover);font:400 12px 'JetBrains Mono',monospace;color:var(--text)">noreply@github.com</span>
+                      <span style="color:var(--text-faint);display:flex;justify-content:center" style-hover="color:var(--text)"><svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"></path></svg></span>
+                    </div>
+                    <div style="display:grid;grid-template-columns:140px 150px 1fr 24px;gap:8px;align-items:center">
+                      <span style="display:flex;align-items:center;justify-content:space-between;height:28px;padding:0 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg-hover);font-size:12px">Subject<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#666E7C" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"></path></svg></span>
+                      <span style="display:flex;align-items:center;justify-content:space-between;height:28px;padding:0 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg-hover);font-size:12px">matches regex<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#666E7C" stroke-width="1.5" stroke-linecap="round"><path d="M4 6l4 4 4-4"></path></svg></span>
+                      <span style="display:flex;align-items:center;height:28px;padding:0 10px;border:1px solid var(--border-strong);border-radius:6px;background:var(--bg-hover);font:400 12px 'JetBrains Mono',monospace;color:var(--text);box-shadow:0 0 0 3px rgba(141,151,166,.22)">build (failed|broken)<span style="width:1px;height:14px;background:var(--text);margin-left:1px"></span></span>
+                      <span style="color:var(--text-faint);display:flex;justify-content:center" style-hover="color:var(--text)"><svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"></path></svg></span>
+                    </div>
+                    <button style="align-self:flex-start;height:24px;padding:0 8px;border-radius:6px;border:none;background:transparent;color:var(--text-dim);font:500 12px Inter,sans-serif;cursor:pointer" style-hover="background:var(--bg-hover);color:var(--text)">+ Add condition</button>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <span style="font:600 11px Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);width:80px">Applies to</span>
+                    <span style="display:flex;align-items:center;gap:6px;height:26px;padding:0 10px;border:1px solid var(--border-strong);border-radius:4px;background:var(--bg-hover);font-size:12px;color:var(--text)"><span style="width:6px;height:6px;border-radius:50%;background:var(--ember)"></span>Work</span>
+                    <span style="display:flex;align-items:center;gap:6px;height:26px;padding:0 10px;border:1px solid var(--border);border-radius:4px;font-size:12px;color:var(--text-faint)"><span style="width:6px;height:6px;border-radius:50%;background:var(--azure);opacity:.5"></span>Personal</span>
+                    <span style="display:flex;align-items:center;gap:6px;height:26px;padding:0 10px;border:1px solid var(--border);border-radius:4px;font-size:12px;color:var(--text-faint)"><span style="width:6px;height:6px;border-radius:50%;background:var(--sage);opacity:.5"></span>Freelance</span>
+                    <span style="display:flex;align-items:center;gap:6px;height:26px;padding:0 10px;border:1px solid var(--border-strong);border-radius:4px;background:var(--bg-hover);font-size:12px;color:var(--text)"><span style="width:6px;height:6px;border-radius:50%;background:var(--teal)"></span>Ops</span>
+                    <span style="display:flex;align-items:center;gap:6px;height:26px;padding:0 10px;border:1px solid var(--border);border-radius:4px;font-size:12px;color:var(--text-faint)"><span style="width:6px;height:6px;border-radius:50%;background:var(--iris);opacity:.5"></span>School</span>
+                    <span style="display:flex;align-items:center;gap:6px;height:26px;padding:0 10px;border:1px solid var(--border);border-radius:4px;font-size:12px;color:var(--text-faint)"><span style="width:6px;height:6px;border-radius:50%;background:var(--rose);opacity:.5"></span>Family</span>
+                  </div>
+                  <div style="display:flex;align-items:flex-start;gap:10px">
+                    <span style="font:600 11px Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);width:80px;padding-top:8px">On match</span>
+                    <div style="display:flex;gap:8px">
+                      <div style="width:170px;padding:10px 12px;border:1px solid var(--border);border-radius:6px;color:var(--text-faint)"><div style="font:500 12px Inter,sans-serif;color:var(--text-dim)">Silent</div><div style="font-size:11px;margin-top:2px">Badge only. No toast.</div></div>
+                      <div style="width:170px;padding:10px 12px;border:1px solid var(--stone);border-radius:6px;background:var(--bg-hover)"><div style="display:flex;align-items:center;justify-content:space-between;font:500 12px Inter,sans-serif;color:var(--text)">Normal<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#8D97A6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"></path></svg></div><div style="font-size:11px;margin-top:2px;color:var(--text-faint)">Toast, auto-dismiss.</div></div>
+                      <div style="width:170px;padding:10px 12px;border:1px solid var(--border);border-radius:6px;color:var(--text-faint)"><div style="font:500 12px Inter,sans-serif;color:var(--text-dim)">Alarm</div><div style="font-size:11px;margin-top:2px">Toast + sound. Stays up.</div></div>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <button style="height:26px;padding:0 10px;border-radius:6px;border:none;background:transparent;color:var(--error);font:500 12px Inter,sans-serif;cursor:pointer" style-hover="background:var(--bg-hover)">Delete rule</button>
+                    <div style="flex:1"></div>
+                    <button style="height:28px;padding:0 14px;border-radius:6px;border:1px solid var(--border-strong);background:transparent;color:var(--text);font:500 12px Inter,sans-serif;cursor:pointer" style-hover="background:var(--bg-hover)">Test rule</button>
+                    <button style="height:28px;padding:0 14px;border-radius:6px;border:none;background:var(--stone);color:#15171C;font:500 12px Inter,sans-serif;cursor:pointer" style-hover="background:#9AA3B0">Save rule</button>
+                  </div>
+                  <div style="border:1px solid var(--border);border-radius:6px;background:var(--bg-surface);overflow:hidden">
+                    <div style="display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid var(--border)">
+                      <span style="font:600 11px Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint)">Tested against the last 20 messages</span>
+                      <span style="font:500 11px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text)">2 fired</span>
+                      <div style="flex:1"></div>
+                      <button style="height:20px;padding:0 8px;border-radius:4px;border:none;background:transparent;color:var(--text-dim);font:500 11px Inter,sans-serif;cursor:pointer" style-hover="background:var(--bg-hover);color:var(--text)">Run again</button>
+                    </div>
+                    <div style="position:relative;display:flex;align-items:center;gap:10px;padding:8px 14px 8px 17px;background:var(--bg-hover)"><span style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ember)"></span><span style="width:6px;height:6px;border-radius:50%;background:var(--ember)"></span><span style="font-size:12px;font-weight:500;width:150px">GitHub Actions</span><span style="font-size:12px;color:var(--text-dim);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Build failed: ledger-api #4112</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">09:41</span><span style="font:500 11px 'JetBrains Mono',monospace;color:var(--ok)">→ Normal</span></div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:8px 14px 8px 17px;border-top:1px solid var(--border);opacity:.55"><span style="width:6px;height:6px;border-radius:50%;background:var(--ember)"></span><span style="font-size:12px;width:150px">Stripe</span><span style="font-size:12px;color:var(--text-dim);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Invoice #4021 paid</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">09:37</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">—</span></div>
+                    <div style="position:relative;display:flex;align-items:center;gap:10px;padding:8px 14px 8px 17px;border-top:1px solid var(--border);background:var(--bg-hover)"><span style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--teal)"></span><span style="width:6px;height:6px;border-radius:50%;background:var(--teal)"></span><span style="font-size:12px;font-weight:500;width:150px">GitHub Actions</span><span style="font-size:12px;color:var(--text-dim);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Build broken on main: infra #882</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">08:55</span><span style="font:500 11px 'JetBrains Mono',monospace;color:var(--ok)">→ Normal</span></div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:8px 14px 8px 17px;border-top:1px solid var(--border);opacity:.55"><span style="width:6px;height:6px;border-radius:50%;background:var(--ember)"></span><span style="font-size:12px;width:150px">Linear</span><span style="font-size:12px;color:var(--text-dim);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">LED-341 moved to Done</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">08:52</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">—</span></div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:8px 14px 8px 17px;border-top:1px solid var(--border);opacity:.55"><span style="width:6px;height:6px;border-radius:50%;background:var(--teal)"></span><span style="font-size:12px;width:150px">Microsoft 365</span><span style="font-size:12px;color:var(--text-dim);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Your weekly digest</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">08:12</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">—</span></div>
+                    <div style="padding:8px 17px;border-top:1px solid var(--border);font-size:11px;color:var(--text-faint)">…and 15 more that didn't match</div>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-top:1px solid var(--border);opacity:.55">
+                <svg width="10" height="14" viewBox="0 0 10 14" fill="#666E7C"><circle cx="3" cy="2.5" r="1.2"></circle><circle cx="7" cy="2.5" r="1.2"></circle><circle cx="3" cy="7" r="1.2"></circle><circle cx="7" cy="7" r="1.2"></circle><circle cx="3" cy="11.5" r="1.2"></circle><circle cx="7" cy="11.5" r="1.2"></circle></svg>
+                <span style="font-weight:500;width:170px">Newsletters</span>
+                <span style="font-size:12px;color:var(--text-faint);flex:1">list-unsubscribe header exists</span>
+                <span style="font:600 10px Inter,sans-serif;letter-spacing:.06em;padding:3px 7px;border:1px solid var(--border-strong);border-radius:4px;color:var(--text-faint)">SILENT</span>
+                <span style="width:32px;height:18px;border-radius:9px;background:var(--bg-hover);border:1px solid var(--border-strong);position:relative;flex:none"><span style="position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:var(--text-faint)"></span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 NOTIFICATIONS -->
+  <div data-screen-label="05 Notifications" style="display:flex;flex-direction:column;gap:10px">
+    <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--text-faint);letter-spacing:.04em">05 · NOTIFICATIONS — SILENT / NORMAL / ALARM / COALESCED</div>
+    <div style="display:flex;gap:24px;align-items:flex-start">
+      <div style="width:300px;display:flex;flex-direction:column;gap:10px">
+        <div style="border:1px solid var(--border);border-radius:8px;background:var(--bg-window);padding:16px;display:flex;flex-direction:column;gap:12px">
+          <div style="position:relative;height:34px;width:176px;display:flex;align-items:center;gap:8px;padding:0 12px 0 16px;border-radius:6px;background:var(--bg-raised);color:var(--text);font-size:13px">
+            <span style="position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:2px 0 0 2px;background:var(--ember)"></span>
+            <span style="font-weight:500">Work</span>
+            <span style="margin-left:auto;font:500 11px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--ember)">4</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-dim)">No toast. The tab badge ticks up and the tray total updates. Nothing moves on screen.</div>
+        </div>
+        <div style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">silent — badge only</div>
+      </div>
+      <div style="width:364px;display:flex;flex-direction:column;gap:10px">
+        <div style="border:1px solid var(--border);border-radius:8px;background:var(--bg-raised);box-shadow:0 12px 32px rgba(8,9,12,.5);padding:12px 14px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--azure)"></span>
+            <span style="font-size:11px;color:var(--text-dim)">Aviary · Personal</span>
+            <span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">now</span>
+            <div style="flex:1"></div>
+            <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#666E7C" stroke-width="1.5" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"></path></svg>
+          </div>
+          <div style="display:flex;gap:12px">
+            <div style="width:34px;height:34px;border-radius:50%;background:var(--azure);color:#15171C;display:flex;align-items:center;justify-content:center;font:600 14px 'Instrument Sans',sans-serif;flex:none">D</div>
+            <div style="min-width:0">
+              <div style="font-weight:500;font-size:13px">Dana Fujimura</div>
+              <div style="font-size:12px;color:var(--text-dim)">Re: Saturday plans</div>
+              <div style="font-size:12px;color:var(--text-faint);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">We could do the early ferry instead — does 9:10 work…</div>
+            </div>
+          </div>
+        </div>
+        <div style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">normal — toast, auto-dismiss 6s</div>
+      </div>
+      <div style="width:364px;display:flex;flex-direction:column;gap:10px">
+        <div style="position:relative;border:1px solid var(--border-strong);border-radius:8px;background:var(--bg-raised);box-shadow:0 12px 32px rgba(8,9,12,.5);padding:12px 14px 12px 17px;display:flex;flex-direction:column;gap:10px;overflow:hidden">
+          <span style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ember)"></span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--ember)"></span>
+            <span style="font-size:11px;color:var(--text-dim)">Aviary · Work</span>
+            <span style="font:600 10px Inter,sans-serif;letter-spacing:.06em;padding:2px 6px;border:1px solid var(--caution);border-radius:4px;color:var(--caution)">ALARM</span>
+            <span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">now</span>
+            <div style="flex:1"></div>
+            <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#666E7C" stroke-width="1.5" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"></path></svg>
+          </div>
+          <div style="display:flex;gap:12px">
+            <div style="width:34px;height:34px;border-radius:50%;background:var(--ember);color:#15171C;display:flex;align-items:center;justify-content:center;font:600 14px 'Instrument Sans',sans-serif;flex:none">S</div>
+            <div style="min-width:0">
+              <div style="font-weight:500;font-size:13px">Sarah Lin</div>
+              <div style="font-size:12px;color:var(--text-dim)">Prod payment webhooks failing</div>
+              <div style="font-size:12px;color:var(--text-faint);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Stripe events are 4xx-ing since 09:32. Need eyes now…</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;padding-left:46px">
+            <button style="height:26px;padding:0 14px;border-radius:6px;border:none;background:var(--ember);color:#15171C;font:500 12px Inter,sans-serif;cursor:pointer" style-hover="filter:brightness(1.08)">Open</button>
+            <button style="height:26px;padding:0 12px;border-radius:6px;border:1px solid var(--border-strong);background:transparent;color:var(--text-dim);font:500 12px Inter,sans-serif;cursor:pointer" style-hover="background:var(--bg-hover);color:var(--text)">Mute rule 1 h</button>
+          </div>
+        </div>
+        <div style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">alarm — sound + stays until dismissed · rail + button take the Perch color</div>
+      </div>
+      <div style="width:364px;display:flex;flex-direction:column;gap:10px">
+        <div style="border:1px solid var(--border);border-radius:8px;background:var(--bg-raised);box-shadow:0 12px 32px rgba(8,9,12,.5);padding:12px 14px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--ember)"></span>
+            <span style="font-size:11px;color:var(--text-dim)">Aviary · Work</span>
+            <span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">last 10 min</span>
+            <div style="flex:1"></div>
+            <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#666E7C" stroke-width="1.5" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"></path></svg>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center">
+            <div style="width:34px;height:34px;border-radius:50%;border:2px solid var(--ember);color:var(--ember);display:flex;align-items:center;justify-content:center;font:500 13px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;flex:none">5</div>
+            <div style="min-width:0">
+              <div style="font-weight:500;font-size:13px">5 new messages in Work</div>
+              <div style="font-size:12px;color:var(--text-faint);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">newest: Invoice #4021 overdue — Stripe</div>
+            </div>
+          </div>
+        </div>
+        <div style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">coalesced — bursts collapse into one toast</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 FOCUS + QUIET HOURS -->
+  <div data-screen-label="06 Focus mode and Quiet Hours" style="display:flex;flex-direction:column;gap:10px">
+    <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--text-faint);letter-spacing:.04em">06 · FOCUS MODE + QUIET HOURS — HELD-NOTIFICATION STATES</div>
+    <div style="width:1100px;border:1px solid var(--border);border-radius:8px;overflow:hidden;flex:none">
+      <div style="height:36px;background:var(--bg-window);display:flex;align-items:center;position:relative">
+        <div style="display:flex;align-items:center;gap:8px;padding:0 14px"><span style="width:8px;height:8px;border-radius:50%;border:1.5px solid var(--text-faint)"></span><span style="font:600 12.5px 'Instrument Sans',sans-serif;color:var(--text-dim)">Aviary</span></div>
+        <div style="position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:7px;height:22px;padding:0 10px;border:1px solid var(--border-strong);border-radius:11px;color:var(--text-dim);font-size:11px">
+          <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3 5.5 5.5 0 1 0 13 9.5z"></path></svg>
+          <span>Focus</span><span style="font:500 11px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text)">14 held</span>
+        </div>
+      </div>
+      <div style="height:30px;background:var(--bg-raised);border-top:1px solid var(--border);display:flex;align-items:center;gap:10px;padding:0 14px;font-size:12px;color:var(--text-dim)">
+        <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3 5.5 5.5 0 1 0 13 9.5z"></path></svg>
+        <span>Focus — notifications held until 3:00 PM</span>
+        <span style="font:500 11px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text)">14 waiting</span>
+        <span style="display:flex;gap:4px;align-items:center"><span style="width:6px;height:6px;border-radius:50%;background:var(--ember)"></span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">9</span><span style="width:6px;height:6px;border-radius:50%;background:var(--azure);margin-left:4px"></span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">4</span><span style="width:6px;height:6px;border-radius:50%;background:var(--rose);margin-left:4px"></span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">1</span></span>
+        <div style="flex:1"></div>
+        <button style="height:20px;padding:0 10px;border-radius:4px;border:1px solid var(--border-strong);background:transparent;color:var(--text-dim);font:500 11px Inter,sans-serif;cursor:pointer" style-hover="background:var(--bg-hover);color:var(--text)">End Focus</button>
+      </div>
+    </div>
+    <div style="width:1100px;border:1px solid var(--border);border-radius:8px;overflow:hidden;flex:none">
+      <div style="height:30px;background:var(--bg-raised);display:flex;align-items:center;gap:10px;padding:0 14px;font-size:12px;color:var(--text-dim)">
+        <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3 5.5 5.5 0 1 0 13 9.5z"></path></svg>
+        <span>Quiet Hours — 22:00 to 07:00</span>
+        <span style="font:500 11px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text)">3 held overnight</span>
+        <span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">ends in 6h 12m</span>
+        <div style="flex:1"></div>
+        <button style="height:20px;padding:0 10px;border-radius:4px;border:1px solid var(--border-strong);background:transparent;color:var(--text-dim);font:500 11px Inter,sans-serif;cursor:pointer" style-hover="background:var(--bg-hover);color:var(--text)">Skip tonight</button>
+      </div>
+    </div>
+    <div style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">banner is 30px, sits under the tab strip · alarms still break through quiet hours (per-rule setting)</div>
+  </div>
+
+  <!-- 07 TRAY MENU -->
+  <div data-screen-label="07 Tray menu" style="display:flex;flex-direction:column;gap:10px">
+    <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--text-faint);letter-spacing:.04em">07 · TRAY MENU — RIGHT-CLICK THE TASKBAR ICON</div>
+    <div style="width:296px;border:1px solid var(--border);border-radius:8px;background:var(--bg-raised);box-shadow:0 16px 40px rgba(8,9,12,.55);padding:6px;display:flex;flex-direction:column;flex:none">
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 10px 6px"><span style="font:600 12.5px 'Instrument Sans',sans-serif;color:var(--text)">Aviary</span><span style="font:400 11px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text-faint)">21 unread</span></div>
+      <div style="display:flex;align-items:center;gap:9px;height:28px;padding:0 10px;border-radius:4px" style-hover="background:var(--bg-hover)"><span style="width:8px;height:8px;border-radius:50%;background:var(--ember)"></span><span style="font-size:12px">Work</span><div style="flex:1"></div><span style="font:500 12px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text-dim)">3</span></div>
+      <div style="display:flex;align-items:center;gap:9px;height:28px;padding:0 10px;border-radius:4px" style-hover="background:var(--bg-hover)"><span style="width:8px;height:8px;border-radius:50%;background:var(--azure)"></span><span style="font-size:12px">Personal</span><div style="flex:1"></div><span style="font:500 12px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text-dim)">12</span></div>
+      <div style="display:flex;align-items:center;gap:9px;height:28px;padding:0 10px;border-radius:4px" style-hover="background:var(--bg-hover)"><span style="width:8px;height:8px;border-radius:50%;background:var(--sage)"></span><span style="font-size:12px">Freelance</span><div style="flex:1"></div><span style="font:500 12px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text-faint)">0</span></div>
+      <div style="display:flex;align-items:center;gap:9px;height:28px;padding:0 10px;border-radius:4px;opacity:.6" style-hover="background:var(--bg-hover)"><span style="width:8px;height:8px;border-radius:50%;background:var(--teal);opacity:.6"></span><span style="font-size:12px">Ops</span><span style="font-size:11px;color:var(--text-faint)">suspended</span><div style="flex:1"></div><span style="font:500 12px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text-faint)">3</span></div>
+      <div style="display:flex;align-items:center;gap:9px;height:28px;padding:0 10px;border-radius:4px" style-hover="background:var(--bg-hover)"><span style="width:8px;height:8px;border-radius:50%;background:var(--iris)"></span><span style="font-size:12px">School</span><span style="width:5px;height:5px;border-radius:50%;background:var(--error)"></span><span style="font-size:11px;color:var(--error)">reauthorize</span><div style="flex:1"></div><span style="font:500 12px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text-faint)">—</span></div>
+      <div style="display:flex;align-items:center;gap:9px;height:28px;padding:0 10px;border-radius:4px" style-hover="background:var(--bg-hover)"><span style="width:8px;height:8px;border-radius:50%;background:var(--rose)"></span><span style="font-size:12px">Family</span><div style="flex:1"></div><span style="font:500 12px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:var(--text-dim)">2</span></div>
+      <div style="height:1px;background:var(--border);margin:6px 4px"></div>
+      <div style="display:flex;align-items:center;gap:9px;height:30px;padding:0 10px;border-radius:4px" style-hover="background:var(--bg-hover)"><span style="font-size:12px">Focus</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">until 3:00 PM</span><div style="flex:1"></div><span style="width:32px;height:18px;border-radius:9px;background:var(--stone);position:relative;flex:none"><span style="position:absolute;top:2px;right:2px;width:14px;height:14px;border-radius:50%;background:#15171C"></span></span></div>
+      <div style="display:flex;align-items:center;gap:9px;height:30px;padding:0 10px;border-radius:4px" style-hover="background:var(--bg-hover)"><span style="font-size:12px">Quiet Hours</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--text-faint)">22:00–07:00</span><div style="flex:1"></div><span style="width:32px;height:18px;border-radius:9px;background:var(--bg-hover);border:1px solid var(--border-strong);position:relative;flex:none"><span style="position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:var(--text-faint)"></span></span></div>
+      <div style="height:1px;background:var(--border);margin:6px 4px"></div>
+      <div style="display:flex;align-items:center;height:28px;padding:0 10px;border-radius:4px;font-size:12px" style-hover="background:var(--bg-hover)">Open Aviary</div>
+      <div style="display:flex;align-items:center;height:28px;padding:0 10px;border-radius:4px;font-size:12px;color:var(--text-dim)" style-hover="background:var(--bg-hover);color:var(--text)">Quit Aviary</div>
+    </div>
+  </div>
+
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;focusMode&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Main window&quot;},&quot;dragging&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Main window&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const drag = this.props.dragging ?? true;
+    return { showFocus: this.props.focusMode ?? false, drag, noDrag: !drag };
+  }
+}
+</script>
+</body>
+</html>

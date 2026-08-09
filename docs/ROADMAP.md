@@ -444,6 +444,20 @@ Stop and revise architecture if secure provider login cannot function with sandb
 - Known medium/low issues have documented workarounds/owners or are explicitly accepted.
 - V1 artifacts are reproducible from the tagged source and locked dependencies.
 
+## 5.1 UI design implementation map
+
+The Claude Code design exploration in [`_ui`](../_ui/README.md) is the visual reference for the InboxRail interface. It is implemented incrementally rather than deferred as a final polish pass:
+
+- P1 establishes the local shell, design tokens, secure asset policy, and accessible component foundation.
+- P2 implements the main account rail and account-management surfaces.
+- P3 integrates lifecycle, loading, sign-in, error, and suspended states around the bounded provider content region.
+- P4–P6 supply real authorization and monitoring status to those surfaces.
+- P7 implements rules, badges, notification preferences, focus, and quiet-hours experiences.
+- P8 implements tray/startup behavior and completes keyboard, reduced-motion, high-contrast, DPI, and mixed-monitor verification.
+- P9 applies final InboxRail identity and release assets; it is not a UI rewrite phase.
+
+The artifact's **Aviary** name becomes **InboxRail**, and its **Perches** map to the account domain unless product terminology is deliberately changed. The generated design runtime, CDN scripts, and remote fonts are reference-only and must not ship. See [UI design implementation map](./ui-design-implementation.md) for screen-to-task mapping and acceptance rules.
+
 ## 6. Critical path and sequencing notes
 
 The critical path is:
