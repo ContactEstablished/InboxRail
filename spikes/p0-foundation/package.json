@@ -1,0 +1,42 @@
+{
+  "name": "inboxrail-p0-foundation-spike",
+  "productName": "InboxRail P0 Foundation Spike",
+  "version": "0.0.0",
+  "description": "Disposable Electron Forge/Vite/TypeScript feasibility spike for InboxRail P0.",
+  "private": true,
+  "main": ".vite/build/main.js",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": "24.18.0",
+    "pnpm": "10.33.2"
+  },
+  "packageManager": "pnpm@10.33.2",
+  "scripts": {
+    "start": "electron-forge start",
+    "typecheck": "tsc --noEmit",
+    "package": "electron-forge package --platform=win32 --arch=x64",
+    "smoke:package": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package-smoke.ps1"
+  },
+  "dependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "7.11.2",
+    "@electron-forge/plugin-vite": "7.11.2",
+    "@electron-forge/shared-types": "7.11.2",
+    "@types/node": "24.13.3",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "@vitejs/plugin-react": "5.2.0",
+    "electron": "43.2.0",
+    "typescript": "7.0.2",
+    "vite": "7.3.1"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron",
+      "esbuild"
+    ]
+  }
+}

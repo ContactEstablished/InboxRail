@@ -141,3 +141,8 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Repository-local disposable toolchains and Electron spike artifacts
+.tools/
+spikes/**/out/
+spikes/**/.vite/

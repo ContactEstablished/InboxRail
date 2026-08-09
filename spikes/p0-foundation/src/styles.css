@@ -1,0 +1,38 @@
+:root {
+  color: #e5e7eb;
+  background: #111827;
+  font-family: "Segoe UI", sans-serif;
+  font-synthesis: none;
+}
+
+body {
+  display: grid;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  place-items: center;
+}
+
+main {
+  width: min(36rem, calc(100vw - 4rem));
+}
+
+h1 {
+  margin: 0.25rem 0;
+  color: #f9fafb;
+  font-size: clamp(3rem, 10vw, 6rem);
+  letter-spacing: -0.06em;
+}
+
+p {
+  color: #9ca3af;
+  font-size: 1.1rem;
+}
+
+.eyebrow {
+  color: #60a5fa;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
